@@ -1,0 +1,12 @@
+{
+	"email-conflict": "A user with this E-Mail already exists",
+	"wrong-credentials": "Wrong password or E-Mail",
+	"user-not-found": "This user was not found",
+	"unverified": "Your E-Mail is not verified",
+	"error": "Something went wrong on our side. Sorry!",
+	"missing-token": "Your session token is missing",
+	"not-found": "This resource could not be found",
+	"missing-permission": "You do not have the permission to access this resource",
+	"missing-or-wrong-parameters": "Your request contains invalid parameters",
+	"invalid-parameters": "invalid-parameters"
+}

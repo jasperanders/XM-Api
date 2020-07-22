@@ -1,0 +1,174 @@
+import { Router } from 'express'
+import { middleware as query } from 'querymen'
+import { middleware as body } from 'bodymen'
+import { addAuthor } from 's/request'
+import { create, index, show, update, destroy } from './controller'
+import { schema } from './model'
+export {{pascalCase endpointName}}, { schema } from './model'
+
+const { content } = schema.tree
+/**
+ * @swagger
+ * tags:
+ *   name: {{pascalCase endpointName}}s
+ *   description: {{pascalCase endpointName}} management
+ */
+const router = new Router()
+
+/**
+ * @swagger
+ * path:
+ *  api/{{lowerCase endpointName}}s/:
+ *    post:
+ *      summary: Create a new {{pascalCase endpointName}}
+ *      tags: [{{pascalCase endpointName}}s]
+ *      security:
+ *        - jwtSessionToken: []
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                content:
+ *                  type: string
+ *      responses:
+ *        "201":
+ *          description: A {{lowerCase endpointName}} schema
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/{{pascalCase endpointName}}'
+ *        "400":
+ *          description: Invalid Body
+ *        "403":
+ *          description: Missing permissions
+ *        "500":
+ *          description: Oh boi
+ */
+router.post(
+    '/',
+    body({
+        content
+    }),
+    addAuthor({ required: false, addBody: true }),
+    create
+)
+
+// TODO: Pagination docs
+/**
+ * @swagger
+ * path:
+ *  api/{{lowerCase endpointName}}s/:
+ *    get:
+ *      summary: Get {{lowerCase endpointName}}s
+ *      tags: [{{pascalCase endpointName}}s]
+ *      security:
+ *        - jwtSessionToken: []
+ *      responses:
+ *        "200":
+ *          description: A {{lowerCase endpointName}} schema array (fields depend on the ACL)
+ *        "403":
+ *          description: Missing permissions
+ *        "500":
+ *          description: Oh boi
+ */
+router.get('/', query(), index)
+
+/**
+ * @swagger
+ * path:
+ *  api/{{lowerCase endpointName}}s/{ {{~lowerCase endpointName~}}Id}:
+ *    get:
+ *      summary: Get {{pascalCase endpointName}}
+ *      tags: [{{pascalCase endpointName}}s]
+ *      security:
+ *        - jwtSessionToken: []
+ *      parameters:
+ *        - in: path
+ *          name: {{lowerCase endpointName}}Id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: ObjectId of the {{lowerCase endpointName}} to get
+ *      responses:
+ *        "200":
+ *          description: A {{lowerCase endpointName}} schema (fields depend on the ACL)
+ *        "403":
+ *          description: Missing permissions
+ *        "404":
+ *          description: {{pascalCase endpointName}} not found
+ *        "500":
+ *          description: Oh boi
+ */
+router.get('/:id', show)
+
+/**
+ * @swagger
+ * path:
+ *  api/{{lowerCase endpointName}}s/{ {{~lowerCase endpointName~}} Id}:
+ *    put:
+ *      summary: Update {{lowerCase endpointName}}
+ *      tags: [{{pascalCase endpointName}}s]
+ *      security:
+ *        - jwtSessionToken: []
+ *      parameters:
+ *        - in: path
+ *          name: {{lowerCase endpointName}}Id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: ObjectId of the {{lowerCase endpointName}} to update
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                content:
+ *                  type: string
+ *      responses:
+ *        "200":
+ *          description: {{pascalCase endpointName}} schema (fields depend on the ACL)
+ *        "400":
+ *          description: Invalid Body
+ *        "403":
+ *          description: Missing permissions
+ *        "404":
+ *          description: {{pascalCase endpointName}} not found
+ *        "500":
+ *          description: Oh boi
+ */
+router.put('/:id', body({ content }), update)
+
+/**
+ * @swagger
+ * path:
+ *  api/{{lowerCase endpointName}}s/{ {{~lowerCase endpointName~}} Id}:
+ *    delete:
+ *      summary: Delete {{lowerCase endpointName}}
+ *      tags: [{{pascalCase endpointName}}s]
+ *      security:
+ *        - jwtSessionToken: []
+ *      parameters:
+ *        - in: path
+ *          name: {{lowerCase endpointName}}Id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: ObjectId of the {{lowerCase endpointName}} to delete
+ *      responses:
+ *        "204":
+ *          description: Successfully deleted {{lowerCase endpointName}}
+ *        "403":
+ *          description: Missing permissions
+ *        "404":
+ *          description: {{pascalCase endpointName}} not found
+ *        "500":
+ *          description: Oh boi
+ */
+router.delete('/:id', destroy)
+
+export default router

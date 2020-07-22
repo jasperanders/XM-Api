@@ -1,0 +1,11 @@
+{
+    "email-conflict": "Es existiert bereits ein Nutzer mit dieser E-Mail Adresse",
+    "wrong-credentials": "Wrong password or E-Mail",
+    "user-not-found": "Dieser Nutzer wurde nicht gefunden",
+    "unverified": "Deine E-Mail ist nicht verifiziert",
+    "error": "Irgendwas ist bei uns schief gelaufen. Sorry!",
+    "missing-token": "Dein Session Token fehlt",
+    "not-found": "Diese Ressource konnte nicht gefunden werden",
+    "missing-permission": "Du hast keine Erlaubnis um auf diese Ressource zuzugreifen",
+    "missing-or-wrong-parameters": "Deine Anfrage beinhaltet ungueltige Parameter"
+}

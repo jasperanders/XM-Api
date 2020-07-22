@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="content-Type" content="text/html; utf-8" />
+  <meta http-equiv="Pragma" content="cache" />
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta http-equiv="content-Language" content="en" />
+  <meta name="description" content="A highly customizable REST backend and API generator." />
+  <meta name="keywords" content="rest, expressjs, nodejs, javascript" />
+  <meta name="publisher" content="Kopfundgeist GbR" />
+  <meta name="audience" content="All" />
+  <meta name="page-type" content="Manal" />
+  <meta http-equiv="Reply-to" content="" />
+  <meta name="expires" content="" />
+  <meta name="revisit-after" content="2 days" />
+  <title>RESTexpress</title>
+  <link rel="stylesheet" href="https://unpkg.com/docute@4/dist/docute.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-92522387-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-92522387-2');
+  </script>
+
+</head>
+
+<body>
+  <div id="restexpress" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
+  <script src="https://unpkg.com/docute@4/dist/docute.js"></script>
+  <script>
+    new Docute({
+      target: "#restexpress",
+      darkThemeToggler: true,
+      layout: "left",
+      banner: `<iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=3&p=48&l=ez&f=ifr&linkID=c104cff2010e586247dba05abee1b87f&t=kopfundgeist-21&tracking_id=kopfundgeist-21" width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>`,
+      sidebar: [{
+          title: "About The Project",
+          link: "/#about-the-project",
+        },
+        // A sidebar item, with child links
+        {
+          title: "Getting Started",
+          children: [{
+              title: "Let's begin!",
+              link: "/#getting-started",
+            },
+            {
+              title: "Prerequisites",
+              link: "/#prerequisites",
+            },
+            {
+              title: "Installation",
+              link: "/#installation",
+            },
+          ],
+        },
+        {
+          title: "Usage",
+          children: [{
+              title: "How to use",
+              link: "/#usage",
+            },
+            {
+              title: "Add mongoose plugins",
+              link: "/#mongoose-plugins",
+            },
+            {
+              title: "Add endpoint (api)",
+              link: "/#adding-routes",
+            },
+            {
+              title: "Accesscontrol (expressjs)",
+              link: "/src/services/express/README",
+            },
+          ],
+        },
+        {
+          title: "References",
+          children: [{
+              title: "Api",
+              link: "/src/api/README",
+            },
+            {
+              title: "Services",
+              link: "/src/services/README",
+            },
+          ],
+        },
+        {
+          title: "Deployment",
+          children: [{
+            title: "Deployment",
+            link: "/#deployment",
+          }, ],
+        },
+        {
+          title: "i18n",
+          link: "locales/README",
+        },
+        {
+          title: "recommended-sources",
+          link: "/#recommended-sources",
+        },
+
+        {
+          title: "Legal",
+          children: [{
+              title: "license",
+              link: "/LICENSE",
+            },
+            {
+              title: "privacy",
+              link: "/_docs/PRIVACY",
+            },
+            {
+              title: "imprint",
+              link: "/_docs/IMPRINT",
+            },
+          ],
+        },
+        // An external link
+        {
+          title: "GitHub",
+          link: "https://github.com/tguelcan/restexpress",
+        },
+      ],
+    });
+
+    Vue.component("affiliate", {
+      template: `
+    <div class="" ref="affiliate">
+     <slot></slot>
+    </div>
+  `,
+      mounted() {
+        console.log("mounted");
+      },
+    });
+  </script>
+</body>
+
+</html>
