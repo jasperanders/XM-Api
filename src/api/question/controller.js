@@ -8,7 +8,7 @@ import {
   NO_CONTENT,
 } from "http-status-codes";
 import { errorHandler } from "s/response";
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Get all
 export const index = async ({ querymen, user, method }, res, next) => {
@@ -44,6 +44,7 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
 // Get Many
 export const find = async ({ bodymen: { body }, method, user }, res, next) => {
   try {
+    console.log(body);
     const data = await Data.find({
       _id: { $in: body.ids.map((id) => mongoose.Types.ObjectId(id)) },
     });

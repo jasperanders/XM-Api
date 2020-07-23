@@ -16,7 +16,7 @@ const { content } = schema.tree;
  */
 const router = new Router();
 
-router.get("/find", body({ ids: [String] }), find);
+router.post("/find", body({ ids: [String] }), find);
 
 /**
  * @swagger

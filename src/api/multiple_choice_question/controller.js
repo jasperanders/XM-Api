@@ -7,6 +7,7 @@ import {
   FORBIDDEN,
   NO_CONTENT,
 } from "http-status-codes";
+import mongoose from "mongoose";
 import { errorHandler } from "s/response";
 
 // Get all
@@ -44,8 +45,9 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
 export const find = async ({ bodymen: { body }, method, user }, res, next) => {
   try {
     const data = await Data.find({
-      _id: { $in: body.ids.map((id) => mongoose.Types.ObjectId(id)) },
+      "content.questionId": { $in: body.ids.map((id) => id) },
     });
+
 
     res.status(OK).json(data);
   } catch (error) {
