@@ -1,19 +1,21 @@
-import { Router } from 'express'
-import { middleware as query } from 'querymen'
-import { middleware as body } from 'bodymen'
-import { addAuthor } from 's/request'
-import { create, index, show, update, destroy } from './controller'
-import { schema } from './model'
-export FreeTextQuestion, { schema } from './model'
+import { Router } from "express";
+import { middleware as query } from "querymen";
+import { middleware as body } from "bodymen";
+import { addAuthor } from "s/request";
+import { create, index, show, update, destroy, find } from "./controller";
+import { schema } from "./model";
+export FreeTextQuestion, { schema } from "./model";
 
-const { content } = schema.tree
+const { content } = schema.tree;
 /**
  * @swagger
  * tags:
  *   name: FreeTextQuestions
  *   description: FreeTextQuestion management
  */
-const router = new Router()
+const router = new Router();
+
+router.post("/find", body({ ids: [String] }), find);
 
 /**
  * @swagger
@@ -48,13 +50,13 @@ const router = new Router()
  *          description: Oh boi
  */
 router.post(
-    '/',
-    body({
-        content
-    }),
-    addAuthor({ required: false, addBody: true }),
-    create
-)
+  "/",
+  body({
+    content,
+  }),
+  addAuthor({ required: false, addBody: true }),
+  create
+);
 
 // TODO: Pagination docs
 /**
@@ -74,7 +76,7 @@ router.post(
  *        "500":
  *          description: Oh boi
  */
-router.get('/', query(), index)
+router.get("/", query(), index);
 
 /**
  * @swagger
@@ -102,7 +104,7 @@ router.get('/', query(), index)
  *        "500":
  *          description: Oh boi
  */
-router.get('/:id', show)
+router.get("/:id", show);
 
 /**
  * @swagger
@@ -141,7 +143,7 @@ router.get('/:id', show)
  *        "500":
  *          description: Oh boi
  */
-router.put('/:id', body({ content }), update)
+router.put("/:id", body({ content }), update);
 
 /**
  * @swagger
@@ -169,6 +171,6 @@ router.put('/:id', body({ content }), update)
  *        "500":
  *          description: Oh boi
  */
-router.delete('/:id', destroy)
+router.delete("/:id", destroy);
 
-export default router
+export default router;

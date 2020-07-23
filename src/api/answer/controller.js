@@ -40,6 +40,19 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
   }
 };
 
+// Get Many
+export const find = async ({ bodymen: { body }, method, user }, res, next) => {
+  try {
+    const data = await Data.find({
+      "content.questionId": { $in: body.ids.map((id) => id) },
+    });
+
+    res.status(OK).json(data);
+  } catch (error) {
+    errorHandler(res, error);
+  }
+};
+
 // Post
 export const create = async (
   { bodymen: { body }, method, user },
