@@ -34,6 +34,8 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
     }
 }
 
+
+
 // Post
 export const create = async ({ bodymen: { body }, method, user }, res, next) => {
     try {

@@ -8,6 +8,7 @@ import {
   NO_CONTENT,
 } from "http-status-codes";
 import { errorHandler } from "s/response";
+var mongoose = require("mongoose");
 
 // Get all
 export const index = async ({ querymen, user, method }, res, next) => {
@@ -35,6 +36,19 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
     }
 
     res.status(OK).json(data.filter({ role: user?.role, method }));
+  } catch (error) {
+    errorHandler(res, error);
+  }
+};
+
+// Get Many
+export const find = async ({ bodymen: { body }, method, user }, res, next) => {
+  try {
+    const data = await Data.find({
+      _id: { $in: body.ids.map((id) => mongoose.Types.ObjectId(id)) },
+    });
+
+    res.status(OK).json(data);
   } catch (error) {
     errorHandler(res, error);
   }
