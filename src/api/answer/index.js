@@ -2,7 +2,16 @@ import { Router } from "express";
 import { middleware as query } from "querymen";
 import { middleware as body } from "bodymen";
 import { addAuthor } from "s/request";
-import { create, index, show, update, destroy, find } from "./controller";
+import {
+  create,
+  index,
+  show,
+  update,
+  destroy,
+  find,
+  startTimer,
+  endTimer,
+} from "./controller";
 import { schema } from "./model";
 export Answer, { schema } from "./model";
 
@@ -16,6 +25,9 @@ const { content } = schema.tree;
 const router = new Router();
 
 router.post("/find", body({ ids: [String] }), find);
+
+router.put("/start_timer/:id/", body({}), startTimer);
+router.put("/end_timer/:id/", body({}), endTimer);
 
 /**
  * @swagger
