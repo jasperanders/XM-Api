@@ -12,6 +12,7 @@ const dataSchema = new Schema(
       name: String,
       questionsById: [String],
       examUsers: [String],
+      dueDate: Date,
     },
     author: {
       type: "ObjectId",
