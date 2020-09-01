@@ -44,10 +44,14 @@ export const show = async ({ params: { id }, method, user }, res, next) => {
 // Get Many
 export const find = async ({ bodymen: { body }, method, user }, res, next) => {
   try {
-    console.log(body);
-    const data = await Data.find({
-      _id: { $in: body.ids.map((id) => mongoose.Types.ObjectId(id)) },
-    });
+    let data;
+    if (body.ids.length) {
+      data = await Data.find({
+        _id: { $in: body.ids.map((id) => mongoose.Types.ObjectId(id)) },
+      });
+    } else {
+      data = await Data;
+    }
 
     res.status(OK).json(data);
   } catch (error) {
@@ -76,21 +80,16 @@ export const update = async (
   next
 ) => {
   try {
-    const data = await Data.findById(id).populate("author");
+    const data = await Data.findById(id);
 
     if (!data) {
       res.status(NOT_FOUND).end();
       return;
     }
 
-    if (!Data.isOwner(data, user)) {
-      res.status(FORBIDDEN).end();
-      return;
-    }
-
     await data.set(body).save();
 
-    res.status(OK).json(data.filter({ role: user?.role, method }));
+    res.status(OK).json(data);
   } catch (error) {
     errorHandler(res, error);
   }
