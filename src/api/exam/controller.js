@@ -18,7 +18,7 @@ export const index = async ({ querymen, user, method }, res, next) => {
       user,
     });
 
-    datas = datas.rows.map((data) => {
+    datas.rows = datas.rows.map((data) => {
       let questionArray = data.content.questionsById;
       for (let i = questionArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
