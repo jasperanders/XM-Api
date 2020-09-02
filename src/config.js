@@ -21,6 +21,7 @@ const config = {
       credentialsRequired: false,
       getToken: (req) => extractToken(req),
       expiresIn: "8d",
+      algorithms: ["HS256"],
     },
     rateLimiter: {
       windowMs: 15 * 60 * 1000, // 15 minutes
